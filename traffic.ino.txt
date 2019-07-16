@@ -1,0 +1,274 @@
+// Density Based sensing code
+
+#include<LiquidCrystal.h>
+LiquidCrystal lcd(2,3,4,5,6,7);
+
+
+int count=0,temp=0,i;
+
+
+#define buzzer 8
+
+#define ir10 A0
+#define ir11 A1
+#define ir20 A2
+#define ir21 A3
+#define ir30 A4
+#define ir31 A5
+#define ir40 A6
+#define ir41 A7
+
+#define lg1 A8
+#define lr1 A9
+#define lg2 A10
+#define lr2 A11
+#define lg3 A12
+#define lr3 A13
+#define lg4 A14
+#define lr4 A15
+
+void setup() {
+  // put your setup code here, to run once:
+  lcd.begin(16,2);
+  lcd.clear();
+  lcd.print("Traffic system");
+  delay(2000);
+  Serial.begin(9600);
+  
+  pinMode(ir10, INPUT);
+  pinMode(ir11, INPUT);
+  pinMode(ir20, INPUT);
+  pinMode(ir21, INPUT);
+  pinMode(ir30, INPUT);
+  pinMode(ir31, INPUT);
+  pinMode(ir40, INPUT);
+  pinMode(ir41, INPUT);
+  
+  pinMode(buzzer, OUTPUT);
+  pinMode(lg1, OUTPUT);
+  pinMode(lr1, OUTPUT);
+  pinMode(lg2, OUTPUT);
+  pinMode(lr2, OUTPUT);
+  pinMode(lg3, OUTPUT);
+  pinMode(lr3, OUTPUT);
+  pinMode(lg4, OUTPUT);
+  pinMode(lr4, OUTPUT);
+  digitalWrite(buzzer,HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+delay(500);
+digitalWrite(buzzer,HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+delay(500);
+digitalWrite(buzzer,HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+delay(500);
+digitalWrite(buzzer,HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+delay(500);
+lcd.clear();
+  lcd.print("System ready");
+  delay(2000);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  //first lane
+  if(digitalRead(ir10)==1 && digitalRead(ir11)==1)      
+  {
+    for(i=30;i>0;i--)
+  {
+    digitalWrite(lg1,HIGH),digitalWrite(lr1,LOW);
+    digitalWrite(lg2,LOW),digitalWrite(lr2,HIGH);
+    digitalWrite(lg3,LOW),digitalWrite(lr3,HIGH);
+    digitalWrite(lg4,LOW),digitalWrite(lr4,HIGH);
+    lcd.clear();
+    lcd.print("Count: ");
+    lcd.print(i);
+    delay(1000);
+  }
+  }
+  else if(digitalRead(ir10)==1 && digitalRead(ir11)==0)
+  {
+   for(i=20;i>0;i--)
+  {
+    digitalWrite(lg1,HIGH),digitalWrite(lr1,LOW);
+    digitalWrite(lg2,LOW),digitalWrite(lr2,HIGH);
+    digitalWrite(lg3,LOW),digitalWrite(lr3,HIGH);
+    digitalWrite(lg4,LOW),digitalWrite(lr4,HIGH);
+    lcd.clear();
+    lcd.print("Count: ");
+    lcd.print(i);
+    delay(1000);
+  } 
+  }
+  else
+  {
+    for(i=10;i>0;i--)
+  {
+    digitalWrite(lg1,HIGH),digitalWrite(lr1,LOW);
+    digitalWrite(lg2,LOW),digitalWrite(lr2,HIGH);
+    digitalWrite(lg3,LOW),digitalWrite(lr3,HIGH);
+    digitalWrite(lg4,LOW),digitalWrite(lr4,HIGH);
+    lcd.clear();
+    lcd.print("Count: ");
+    lcd.print(i);
+    delay(1000);
+   }
+  }
+digitalWrite(buzzer,HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+delay(500);
+  //*************************************************************************************//
+  //second lane
+
+  if(digitalRead(ir20)==1 && digitalRead(ir21)==1)      
+  {
+    for(i=30;i>0;i--)
+  {
+    digitalWrite(lg1,LOW),digitalWrite(lr1,HIGH);
+    digitalWrite(lg2,HIGH),digitalWrite(lr2,LOW);
+    digitalWrite(lg3,LOW),digitalWrite(lr3,HIGH);
+    digitalWrite(lg4,LOW),digitalWrite(lr4,HIGH);
+    lcd.clear();
+    lcd.print("Count: ");
+    lcd.print(i);
+    delay(1000);
+  }
+  }
+  else if(digitalRead(ir20)==1 && digitalRead(ir21)==0)
+  {
+   for(i=20;i>0;i--)
+  {
+    digitalWrite(lg1,LOW),digitalWrite(lr1,HIGH);
+    digitalWrite(lg2,HIGH),digitalWrite(lr2,LOW);
+    digitalWrite(lg3,LOW),digitalWrite(lr3,HIGH);
+    digitalWrite(lg4,LOW),digitalWrite(lr4,HIGH);
+    lcd.clear();
+    lcd.print("Count: ");
+    lcd.print(i);
+    delay(1000);
+  } 
+  }
+  else
+  {
+    for(i=10;i>0;i--)
+  {
+    digitalWrite(lg1,LOW),digitalWrite(lr1,HIGH);
+    digitalWrite(lg2,HIGH),digitalWrite(lr2,LOW);
+    digitalWrite(lg3,LOW),digitalWrite(lr3,HIGH);
+    digitalWrite(lg4,LOW),digitalWrite(lr4,HIGH);
+    lcd.clear();
+    lcd.print("Count: ");
+    lcd.print(i);
+    delay(1000);
+  }
+  }
+digitalWrite(buzzer,HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+delay(500);
+  //*************************************************************************************//
+  //third lane
+
+  if(digitalRead(ir30)==1 && digitalRead(ir31)==1)      
+  {
+    for(i=30;i>0;i--)
+  {
+    digitalWrite(lg1,LOW),digitalWrite(lr1,HIGH);
+    digitalWrite(lg2,LOW),digitalWrite(lr2,HIGH);
+    digitalWrite(lg3,HIGH),digitalWrite(lr3,LOW);
+    digitalWrite(lg4,LOW),digitalWrite(lr4,HIGH);
+    lcd.clear();
+    lcd.print("Count: ");
+    lcd.print(i);
+    delay(1000);
+  }
+  }
+  else if(digitalRead(ir30)==1 && digitalRead(ir31)==0)
+  {
+   for(i=20;i>0;i--)
+  {
+    digitalWrite(lg1,LOW),digitalWrite(lr1,HIGH);
+    digitalWrite(lg2,LOW),digitalWrite(lr2,HIGH);
+    digitalWrite(lg3,HIGH),digitalWrite(lr3,LOW);
+    digitalWrite(lg4,LOW),digitalWrite(lr4,HIGH);
+    lcd.clear();
+    lcd.print("Count: ");
+    lcd.print(i);
+    delay(1000);
+  } 
+  }
+  else
+  {
+    for(i=10;i>0;i--)
+  {
+    digitalWrite(lg1,LOW),digitalWrite(lr1,HIGH);
+    digitalWrite(lg2,LOW),digitalWrite(lr2,HIGH);
+    digitalWrite(lg3,HIGH),digitalWrite(lr3,LOW);
+    digitalWrite(lg4,LOW),digitalWrite(lr4,HIGH);
+    lcd.clear();
+    lcd.print("Count: ");
+    lcd.print(i);
+    delay(1000);
+  }
+  }
+digitalWrite(buzzer,HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+delay(500);
+  //*************************************************************************************//
+  //forth lane
+
+  if(digitalRead(ir40)==1 && digitalRead(ir41)==1)      
+  {
+    for(i=30;i>0;i--)
+  {
+    digitalWrite(lg1,LOW),digitalWrite(lr1,HIGH);
+    digitalWrite(lg2,LOW),digitalWrite(lr2,HIGH);
+    digitalWrite(lg3,LOW),digitalWrite(lr3,HIGH);
+    digitalWrite(lg4,HIGH),digitalWrite(lr4,LOW);
+    lcd.clear();
+    lcd.print("Count: ");
+    lcd.print(i);
+    delay(1000);
+  }
+  }
+  else if(digitalRead(ir40)==1 && digitalRead(ir41)==0)
+  {
+   for(i=20;i>0;i--)
+  {
+    digitalWrite(lg1,LOW),digitalWrite(lr1,HIGH);
+    digitalWrite(lg2,LOW),digitalWrite(lr2,HIGH);
+    digitalWrite(lg3,LOW),digitalWrite(lr3,HIGH);
+    digitalWrite(lg4,HIGH),digitalWrite(lr4,LOW);
+    lcd.clear();
+    lcd.print("Count: ");
+    lcd.print(i);
+    delay(1000);
+  } 
+  }
+  else
+  {
+    for(i=10;i>0;i--)
+  {
+    digitalWrite(lg1,LOW),digitalWrite(lr1,HIGH);
+    digitalWrite(lg2,LOW),digitalWrite(lr2,HIGH);
+    digitalWrite(lg3,LOW),digitalWrite(lr3,HIGH);
+    digitalWrite(lg4,HIGH),digitalWrite(lr4,LOW);
+    lcd.clear();
+    lcd.print("Count: ");
+    lcd.print(i);
+    delay(1000);
+  }
+  }
+  digitalWrite(buzzer,HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+delay(500);
+
+}
